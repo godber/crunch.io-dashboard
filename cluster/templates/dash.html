@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Crunch.io - Dashboard{% endblock %}
+{% block pagetitle %}Dashboard{% endblock %}
+
+{% block javascript %}
+    $('#clusters').dataTable();
+{% endblock %}
+
+{% block content %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<h3>Clusters</h3>
+
+<a href="{% url dash.cluster.views.create %}" class="btn">
+    <span class="icon icon-add"> </span>Create Cluster
+</a>
+
+<div class="clear">&nbsp;</div>
+<table class="display stylized" id="clusters">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number of Nodes</th>
+            <th>Node Type</th>
+            <th>Disk Size</th>
+            <th>IP Address</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cluster in cluster_templates %}
+        <tr class="gradeA">
+            <td>{{cluster.name}}
+                {% if cluster.is_demo %}
+                (DEMO)
+                {% endif %}
+            </td>
+            <td>{{cluster.number_of_nodes}}</td>
+            <td>{{cluster.type_of_nodes}}</td>
+            <td>{{cluster.disk_set.all.0.size}} GB</td>
+            <td>
+                {% if cluster.status == 'running' %}
+                    {% for instance in cluster.clusterinstance_set.all %}
+                    {% if instance.is_running %}
+                    {% for node in instance.ec2instance_set.all %}
+                        {% if node.alias == 'master' %}
+                            {{ node.ip_address }}
+                        {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                -
+                {% endif %}
+             <td>{{cluster.status}}</td>
+            <td>
+                {% if cluster.status == 'running' %}
+                    {% for instance in cluster.clusterinstance_set.all %}
+                    {% if instance.is_running %}
+                    {# FIXME: Update these to be forms posts #}
+                    <a href="{% url dash.cluster.views.terminate instance.id %}">Stop</a> |
+                    {% endif %}
+                    {% endfor %}
+                {% else %} {% if cluster.status == 'stopped' %}
+                <a href="{% url dash.cluster.views.launch cluster.id %}">Start</a> |
+                {% endif %} {% endif %}
+                <a href="{% url dash.cluster.views.history cluster.id %}">History</a><br />
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+

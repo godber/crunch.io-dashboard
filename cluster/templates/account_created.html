@@ -1,0 +1,23 @@
+{% extends "single-column.html" %}
+
+{% block title %}Crunch.io - Account Created{% endblock %}
+{% block pagetitle %}Account Created{% endblock %}
+
+{% block content %}
+
+<h2>Crunch.io Account Created</h2>
+
+{% if ssh_key_needed %}
+<div class="box box-warning">
+    <strong>SSH Key Already Exists</strong><br />
+    You must add your SSH key to your account before you can launch a cluster.
+</div>
+{% endif %}
+
+<p>
+Your Crunch.io account has been created but not activated.  Crunch.io will send
+an email to {{email}} when you account is activated. Once you account is
+activated you may login <a href="/accounts/login/?next=/">here</a> to proceed.
+</p>
+
+{% endblock %}

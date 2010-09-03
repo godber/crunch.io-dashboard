@@ -1,0 +1,9 @@
+Django==1.2.1
+Fabric==0.9.1
+StarCluster==0.91
+boto==1.9b
+django-fields==0.1.1
+django-piston==0.2.2
+paramiko==1.7.6
+pycrypto==2.2
+wsgiref==0.1.2

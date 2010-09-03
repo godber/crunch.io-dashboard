@@ -1,0 +1,70 @@
+{% extends "single-column.html" %}
+
+{% block title %}Crunch.io - Create Account{% endblock %}
+{% block pagetitle %}Create Account{% endblock %}
+
+{% block content %}
+
+<h2>Crunch.io Beta Account Creation</h2>
+
+{% if user_form.errors %}
+<p><div class="box box-error">
+    Error creating your account: See details below.
+</div></p>
+{% endif %}
+
+<p>Crunch.io is currently in a limited beta, so accounts created with this
+form will not be activated immediately.  You <strong>must</strong> provide
+a valid email address and AWS credentials or your account will be deleted.
+Your account will not be activated until after you are contacted by Crunch.io.
+</p>
+
+<form action="/cluster/account/create/" method="post">{% csrf_token %}
+    <fieldset>
+        <legend>General User Information</legend>
+        <table>
+            {{ user_form.as_table }}
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>AWS Information</legend>
+        <div class="content-box corners content-box-closed"> 
+            <header> 
+            <h3><img src="/img/information.png" alt="AWS Credentials" />
+                AWS Credential Details
+            </h3> 
+            </header>
+            <section>
+                <p>
+                You must have an existing Amazon EC2 account to participate in this early beta.
+                You can create an EC2 account at the 
+                <a href="http://aws.amazon.com/ec2/">Amazon Web Services EC2 page</a>.
+                </p>
+
+                <p>
+                You must also have the following AWS credentials:
+                <ul>
+                    <li><strong>AWS User ID</strong> <br /> Example: 1234-1234-1234</li>
+                    <li><strong>AWS Key ID</strong> <br /> Example: AEMJLQFEKNV7TPUXAEAP</li>
+                    <li><strong>AWS Secret Key</strong> <br /> Example: vBwouJQgPtPFOvymENkxoNqBEHipujzECmUbxSXj</li>
+                </ul>
+                Details on finding these credentials can be found in the 
+                <a href="http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/index.html?using-credentials.html">
+                    Amazon EC2 Users Guide
+                </a>.
+                </p>
+            </section>
+        </div>
+        <table>
+            {{ aws_credential_form.as_table }}
+        </table>
+    </fieldset>
+<div>
+<input type="submit" class="btn btn-green big" value="Create Account" />
+<a href="/">Cancel</a>
+</div>
+<div class="clear">&nbsp;</div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+[
+    {
+        "pk": 1, 
+        "model": "cluster.disk", 
+        "fields": {
+            "latest_snapshot_id": "snap-0e16f165", 
+            "mount_path": "/home", 
+            "cluster_template": 1, 
+            "home_volume_id": "", 
+            "partition": 1, 
+            "name": "Home", 
+            "size": 2
+        }
+    }
+]

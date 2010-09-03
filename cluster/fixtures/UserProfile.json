@@ -1,0 +1,26 @@
+[
+   {
+      "fields" : {
+         "user" : 1,
+         "credit" : "0.00"
+      },
+      "pk" : 1,
+      "model" : "cluster.userprofile"
+   },
+   {
+      "fields" : {
+         "user" : 2,
+         "credit" : "0.00"
+      },
+      "pk" : 2,
+      "model" : "cluster.userprofile"
+   },
+   {
+      "fields" : {
+         "user" : 3,
+         "credit" : "0.00"
+      },
+      "pk" : 3,
+      "model" : "cluster.userprofile"
+   }
+]

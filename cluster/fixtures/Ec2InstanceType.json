@@ -1,0 +1,130 @@
+[
+    {
+        "pk": 1, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "Small", 
+            "storage_description": "150 GB plus 10 GB root partition", 
+            "hourly_price": "0.085", 
+            "memory": 1.7, 
+            "compute_description": "1 virtual core with 1 EC2 Compute Unit", 
+            "api_name": "m1.small", 
+            "io_performance": "moderate", 
+            "instance_storage": 160, 
+            "compute_units": 1.0, 
+            "architecture": "32"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "Large", 
+            "storage_description": "2\u00d7420 GB plus 10 GB root partition", 
+            "hourly_price": "0.34", 
+            "memory": 7.5, 
+            "compute_description": "2 virtual cores with 2 EC2 Compute Units each", 
+            "api_name": "m1.large", 
+            "io_performance": "high", 
+            "instance_storage": 850, 
+            "compute_units": 4.0, 
+            "architecture": "64"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "Extra Large", 
+            "storage_description": "4\u00d7420 GB plus 10 GB root partition", 
+            "hourly_price": "0.68", 
+            "memory": 15.0, 
+            "compute_description": "4 virtual cores with 2 EC2 Compute Units each", 
+            "api_name": "m1.xlarge", 
+            "io_performance": "high", 
+            "instance_storage": 1690, 
+            "compute_units": 8.0, 
+            "architecture": "64"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "High-Memory Extra Large", 
+            "storage_description": "None", 
+            "hourly_price": "0.5", 
+            "memory": 17.100000000000001, 
+            "compute_description": "2 virtual cores with 3.25 EC2 Compute Units each", 
+            "api_name": "m2.xlarge", 
+            "io_performance": "moderate", 
+            "instance_storage": 420, 
+            "compute_units": 6.5, 
+            "architecture": "64"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "High-Memory Double Extra Large", 
+            "storage_description": "None", 
+            "hourly_price": "1.2", 
+            "memory": 34.200000000000003, 
+            "compute_description": "4 virtual cores with 3.25 EC2 Compute Units each", 
+            "api_name": "m2.2xlarge", 
+            "io_performance": "high", 
+            "instance_storage": 850, 
+            "compute_units": 13.0, 
+            "architecture": "64"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "High-Memory Quadruple Extra Large", 
+            "storage_description": "None", 
+            "hourly_price": "2.4", 
+            "memory": 68.400000000000006, 
+            "compute_description": "8 virtual cores with 3.25 EC2 Compute Units each", 
+            "api_name": "m2.4xlarge", 
+            "io_performance": "high", 
+            "instance_storage": 1690, 
+            "compute_units": 26.0, 
+            "architecture": "64"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "High-CPU Medium", 
+            "storage_description": "None", 
+            "hourly_price": "0.17", 
+            "memory": 1.7, 
+            "compute_description": "2 virtual cores with 2.5 EC2 Compute Units each", 
+            "api_name": "c1.medium", 
+            "io_performance": "moderate", 
+            "instance_storage": 350, 
+            "compute_units": 5.0, 
+            "architecture": "32"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "cluster.ec2instancetype", 
+        "fields": {
+            "name": "High-CPU Extra Large", 
+            "storage_description": "None", 
+            "hourly_price": "0.68", 
+            "memory": 7.0, 
+            "compute_description": "8 virtual cores with 2.5 EC2 Compute Units each", 
+            "api_name": "c1.xlarge", 
+            "io_performance": "high", 
+            "instance_storage": 1690, 
+            "compute_units": 20.0, 
+            "architecture": "64"
+        }
+    }
+]

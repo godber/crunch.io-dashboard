@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Crunch.io - Create Cluster{% endblock %}
+{% block pagetitle %}Create Cluster{% endblock %}
+
+{% block content %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+Select the cluster parameters for the cluster you wish to launch:
+<form action="/cluster/create/" method="post">{% csrf_token %}
+    <table>
+    {{ cluster_form.as_table }}
+    {{ disk_form.as_table }}
+    </table>
+<div>
+<input type="submit" class="btn btn-green big" value="Create Cluster" />
+<a href="/">Cancel</a>
+</div>
+<div class="clear">&nbsp;</div>
+</form>
+
+
+{% endblock %}

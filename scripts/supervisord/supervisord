@@ -1,0 +1,61 @@
+#!/bin/sh
+# Startup script for a supervisor instance
+#
+# chkconfig: 2345 80 20
+# description: supervisord
+
+supervisorctl="/usr/bin/supervisorctl"
+supervisord="/usr/bin/supervisord"
+pid="/var/run/supervisord.pid"
+name="supervisord"
+
+[ -f $supervisord ] || exit 1
+[ -f $supervisorctl ] || exit 1
+
+RETVAL=0
+
+start() {
+    echo -n "Starting $name: "
+    $supervisord
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && touch /var/lock/$name
+    echo
+    return $RETVAL
+}
+
+stop() {
+    echo -n "Stopping $name: "
+    $supervisorctl shutdown
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && rm -f /var/lock/$name
+    echo
+    return $RETVAL
+}
+
+reload() {
+    kill -HUP `cat $pid`
+    RETVAL=$?
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    reload)
+        reload
+        ;;
+    *)
+        echo "Usage: $0 start|stop|restart|reload"
+        exit 1
+        ;;
+esac
+
+exit $RETVAL

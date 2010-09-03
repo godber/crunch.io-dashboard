@@ -1,0 +1,32 @@
+# settings_local.py
+# This file contains your local settings and I advise that you do not commit it
+# to your source control system.
+
+# Disable debugging for production
+#DEBUG = False
+#TEMPLATE_DEBUG = False
+
+# Make this unique, and don't share it with anybody.
+# Also make sure you do not lose it, some model fields are encrypted with this
+# key and database dumps would not be useful without this key.
+SECRET_KEY = ''
+
+
+IN_EC2 = False
+# Set this to have Django deliver media files during development, it should be
+# the aboslute path to cluster/assets/. If DEBUG = True
+STATIC_DOC_ROOT = ''
+
+# Settings that should never be checked into version control
+AMAZON_ACCESS_KEY_ID = ''
+AMAZON_SECRET_ACCESS_KEY = ''
+AMAZON_USER_ID = ''
+
+# Override the sqlite3 db used in development here
+#DATABASE_ENGINE = 'postgresql_psycopg2'
+#DATABASE_NAME = 'dash'
+#DATABASE_USER = 'django_login'
+#DATABASE_PASSWORD = ''
+#DATABASE_HOST = ''
+#DATABASE_PORT = ''
+

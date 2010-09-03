@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Crunch.io - Cluster History{% endblock %}
+{% block pagetitle %}Cluster History{% endblock %}
+
+{% block content %}
+<h2>Cluster History for {{cluster_template.name}}</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<strong>{{cluster_template.name}}</strong> (id = {{cluster_template.id}},
+number = {{cluster_template.number_of_nodes}}, 
+type = {{cluster_template.type_of_nodes}})<br />
+<ul>
+    {% for instance in cluster_template.clusterinstance_set.all %}
+    <li>
+        Cluster Instance ID: {{instance.id}}<br />
+        Launch Time: {{instance.launch_time|date:"SHORT_DATETIME_FORMAT"}}<br />
+        Termination Time: {{instance.termination_time|date:"SHORT_DATETIME_FORMAT"}}<br />
+        Running: {{instance.is_running}}<br />
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url dash.cluster.views.dash %}">Back to Dashboard</a>
+
+{% endblock %}
+

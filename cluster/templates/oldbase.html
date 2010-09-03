@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Crunch.io Cluster Management{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/media/css/base.css" /> 
+    <link rel="stylesheet" type="text/css" href="/media/css/dashboard.css" />  
+</head>
+
+<body class="dashboard">
+<!-- Container --> 
+<div id="container"> 
+    <!-- Header --> 
+    <div id="header"> 
+        <div id="branding"> 
+<h1 id="site-name">Cluster Administration</h1> 
+        </div> 
+
+    <div id="user-tools">
+      {% block sidebar %}
+{% if user.is_authenticated %}
+      Welcome,
+      <strong>{{user.first_name}}</strong>.
+
+        <a href="/cluster/">Home</a> 
+        |
+        <a href="{% url dash.cluster.views.create %}">Create Cluster</a>
+        |
+        <a href="/admin/">Account</a>
+        |
+        <a href="/accounts/logout">Logout</a>
+{% endif %}
+        {% endblock %}
+    </div>
+  </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+

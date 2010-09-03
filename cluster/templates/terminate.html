@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Crunch.io - Cluster Terminated{% endblock %}
+
+{% block content %}
+<h2>Terminating Cluster</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<p>The following cluster is being terminated:
+    <ul>
+        <li>Name: {{cluster_instance.cluster_template.name}}</li>
+        <li>Launch Time: {{cluster_instance.launch_time}}</li>
+        <li>Termination Time: {{cluster_instance.termination_time}}</li>
+    </ul>
+</p>
+
+<a href="{% url dash.cluster.views.dash %}">Back to the Dashboard</a>
+
+{% endblock %}

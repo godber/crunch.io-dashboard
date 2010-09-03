@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Crunch.io - Cluster Launching{% endblock %}
+
+{% block content %}
+<h2>Launching Cluster</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<p>The following cluster is launching:
+    <ul>
+        <li>Name: {{cluster_template.name}}</li>
+        <li>Number of Nodes: {{cluster_template.number_of_nodes}}</li>
+        <li>Type of Nodes: {{cluster_template.type_of_nodes}}</li>
+        <li>Launch Time: {{cluster_instance.launch_time}}</li>
+    </ul>
+</p>
+
+<a href="{% url dash.cluster.views.dash %}">Back to the Dashboard</a>
+
+{% endblock %}

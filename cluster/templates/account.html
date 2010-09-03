@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Crunch.io - Account Information{% endblock %}
+{% block pagetitle %}Account Information for {{user.username}}{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+{% block content %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<h3>General Information</h3>
+<div class="colgroup"> 
+  <div class="column width2 first"> 
+    <p class="label-box">Username</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">{{user.username}}</p> 
+  </div> 
+  <div class="column width2 first"> 
+    <p class="label-box">Name</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">{{user.first_name}}&nbsp;{{user.last_name}}</p> 
+  </div> 
+  <div class="column width2 first"> 
+    <p class="label-box">Email</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">{{user.email}}</p> 
+  </div> 
+</div> 
+<div class="clear">&nbsp;</div> 
+<h3>AWS Information</h3>
+<div class="colgroup"> 
+  <div class="column width2 first"> 
+    <p class="label-box">AWS User ID</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">{{user.get_profile.awscredential.aws_user_id}}</p> 
+  </div> 
+  <div class="column width2 first"> 
+    <p class="label-box">AWS Email</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">{{user.get_profile.awscredential.aws_email}}</p> 
+  </div> 
+  <div class="column width2 first"> 
+    <p class="label-box">AWS Key ID</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">{{user.get_profile.awscredential.aws_key_id}}</p> 
+  </div> 
+  <div class="column width2 first"> 
+    <p class="label-box">AWS Secret Key</p> 
+  </div> 
+  <div class="column width4"> 
+    <p class="data-box">
+    &middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;
+    </p>
+  </div> 
+</div> 
+<div class="clear">&nbsp;</div>
+    <a href="/cluster/account/password" class="btn">Change Password</a>
+    <a href="#" class="btn">Edit Account</a>
+<div class="clear">&nbsp;</div> 
+{% endblock %}

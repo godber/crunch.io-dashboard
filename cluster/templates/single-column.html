@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Crunch.io Cluster Management{% endblock %}</title>
+<!-- Header metatags -->
+<!-- Favicons -->
+<link rel="shortcut icon" type="image/png" href="/img/favicons/favicon.png"/> 
+<link rel="icon" type="image/png" href="/img/favicons/favicon.png"/> 
+<link rel="apple-touch-icon" href="/img/favicons/apple.png" /> 
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="/css/style.css" type="text/css" /> 
+<!-- Colour Schemes -->
+<!-- Your Custom Stylesheet -->
+<link rel="stylesheet" href="/css/custom.css" type="text/css" /> 
+<!-- jQuery with plugins -->
+<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script> 
+<!-- Could be loaded remotely from Google CDN : <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> --> 
+<script type="text/javascript" src="/js/jquery.ui.core.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.ui.widget.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.ui.tabs.min.js"></script> 
+<!-- jQuery tooltips --> 
+<script type="text/javascript" src="/js/jquery.tipTip.min.js"></script> 
+<!-- Superfish navigation --> 
+<script type="text/javascript" src="/js/jquery.superfish.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.supersubs.min.js"></script> 
+<!-- jQuery form validation --> 
+<script type="text/javascript" src="/js/jquery.validate_pack.js"></script> 
+<!-- jQuery popup box --> 
+<script type="text/javascript" src="/js/jquery.nyroModal.pack.js"></script> 
+<!-- jQuery graph plugins --> 
+<!--[if IE]><script type="text/javascript" src="js/flot/excanvas.min.js"></script><![endif]--> 
+<script type="text/javascript" src="/js/flot/jquery.flot.min.js"></script> 
+
+<!-- Internet Explorer Fixes -->
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+<script src="/js/html5.js"></script>
+<![endif]--> 
+<!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js --> 
+<!--[if lt IE 8]>
+<script src="/js/IE8.js"></script>
+<![endif]--> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    /* setup navigation, content boxes, etc... */
+	Administry.setup();
+
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17168033-3']);
+  _gaq.push(['_setDomainName', '.crunch.io']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+	<!-- Header -->
+	<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo -->
+			<div id="title">Crunch.io</div>
+        </div>
+        <!-- Main navigation -->
+        <nav id="menu">
+            <ul class="sf-menu">
+                <li {% block login_current %}{% endblock %}><a href="/accounts/login/?next=/">Login</a></li>
+                <li {% block register_current %}{% endblock %}><a href="/cluster/register">Register</a></li>
+            </ul>
+        </nav>
+        <!-- End of Main navigation -->
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper"> </div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper-login">
+				<!-- Left column/section -->
+				<section class="full">
+                    {% block content %}{% endblock %}
+				</section>
+				<!-- End of Left column/section -->
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+	
+	<!-- Page footer -->
+    <footer id="bottom">
+        <div class="wrapper"> 
+            <nav> 
+                <a href="/">Dashboard</a> &middot;
+                <a href="http://crunch.io/">WWW</a> &middot;
+				<a href="http://twitter.com/crunchio/">Twitter</a>
+			</nav> 
+            <p>Copyright &copy; 2010 
+                <b><a href="http://uberhip.com/" title="Visit my home page.">Austin Godber</a></b>
+            </p> 
+		</div>    
+    </footer>
+	<!-- End of Page footer -->
+	
+<!-- Admin template javascript load -->
+<script type="text/javascript" src="/js/administry.js"></script>
+</html>
+</body>
