@@ -15,9 +15,12 @@ Steps for running dash on Ubuntu 10.04::
     mkvirtualenv --no-site-packages crunchio
     git clone git://github.com/godber/crunch.io-dashboard.git dash
     cd dash
-    # libgmp3(-dev) is needed for pycrypto
+    # Install the system dependencies
     sudo apt-get install -y python-dev libgmp3-dev libgmp3c2 build-essential
-    # Run the following command and follow the instructions
+    # Install the python dependencies
+    pip install -r requirements.txt
+    # Run the following commands and follow the instructions
+    fab setup
     fab bootstrap
 
 

@@ -6,11 +6,12 @@
 #DEBUG = False
 #TEMPLATE_DEBUG = False
 
+########################### IMPORTANT! README!################################
 # Make this unique, and don't share it with anybody.
 # Also make sure you do not lose it, some model fields are encrypted with this
 # key and database dumps would not be useful without this key.
+########################### IMPORTANT! README!################################
 SECRET_KEY = ''
-
 
 IN_EC2 = False
 # Set this to have Django deliver media files during development, it should be
