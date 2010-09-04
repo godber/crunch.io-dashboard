@@ -1,6 +1,7 @@
 from fabric.api import *
 import glob
-import os.path
+import os
+from random import choice
 
 def docs():
     print "Generating PDF documentation"
@@ -15,8 +16,15 @@ def docs():
 
 def bootstrap():
     local('python ./manage.py syncdb --noinput')
-    local('python ./manage.py loaddata UserProfile.json User.json')
     local('python ./manage.py loaddata Ec2InstanceType.json')
+    print ''
+    print 'Create and edit the settings_local.py file, some settings are provided below:'
+    print '  cp settings_local.py-example settings_local.py'
+    print '  vi settings_local.py'
+    print "You may use the following key for SECRET_KEY or generate your own:"
+    print '  ' + ''.join([choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
+    print 'You may also want to set STATIC_DOC_ROOT if you are doing development:'
+    print '  ' + os.getcwd() + '/cluster/assets'
  
 def reset():
     print "Resetting the entire application"
