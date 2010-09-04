@@ -19,7 +19,7 @@ def bootstrap():
     local('python ./manage.py loaddata Ec2InstanceType.json')
     local('python ./manage.py loaddata User.json')
     print 'Change the admin user password:'
-    print '  python ./manage.py changepassword'
+    print '  python ./manage.py changepassword admin'
 
 def setup():
     print 'Create and edit the settings_local.py file, some settings are provided below:'
