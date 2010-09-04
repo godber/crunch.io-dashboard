@@ -1,0 +1,28 @@
+[
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "admin", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2010-09-04 11:35:50", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$cbbb3$d1bdfb70ac7c6320a9773f60c843dc0a20f447c6", 
+      "email": "admin@example.com", 
+      "date_joined": "2010-09-04 11:35:32"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "cluster.userprofile", 
+    "fields": {
+      "credit": "0", 
+      "user": 1
+    }
+  }
+]

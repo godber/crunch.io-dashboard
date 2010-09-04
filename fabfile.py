@@ -17,7 +17,10 @@ def docs():
 def bootstrap():
     local('python ./manage.py syncdb --noinput')
     local('python ./manage.py loaddata Ec2InstanceType.json')
+    local('python ./manage.py loaddata User.json')
     print ''
+    print 'Change the admin user password:'
+    print '  python ./manage.py changepassword'
     print 'Create and edit the settings_local.py file, some settings are provided below:'
     print '  cp settings_local.py-example settings_local.py'
     print '  vi settings_local.py'
