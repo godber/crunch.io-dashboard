@@ -29,9 +29,11 @@ Running
 
 After you have completed the setup steps you can run the app with the following
 command::
+
     python ./manage.py runserver
 
 And then in another terminal, run the django-task daemon::
+
     python ./manage.py taskd
 
 
