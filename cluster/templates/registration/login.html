@@ -5,7 +5,9 @@
 <h3> Login </h3>
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p><div class="box box-error">
+    Username and password didn't match. Please try again.
+</div></p>
 {% endif %}
 
 <form method="post" id="loginform" action="{% url django.contrib.auth.views.login %}">{% csrf_token %}
