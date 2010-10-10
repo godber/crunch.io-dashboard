@@ -46,6 +46,31 @@ directory contains a django.wsgi file and supervisor configuration file to get
 you started.
 
 
+Testing Guidelines
+++++++++++++++++++
+
+I am trying to establish which testing frameworks I intend to use for this
+application.  At the moment, I have the following two expectations:
+
+  * Use doctests to provide functional usage examples is encouraged.  But it is
+    not suitible for general testing.
+  * I may make use of django.test TestCases
+  * Lettuce tests are the current focus, though that may change.
+
+I have been hoping to use pyccuracy, but I haven't managed to get its basic
+example working correctly even.  I have had no response on their mailing list.
+I would prefer a BDD style testing framework that actually drives a browser like
+pycurracy but lettuce is BDD and runs quickly, so perhaps it is suitable for
+some things.
+
+The following two commands can be used to run tests::
+
+    # running the doctests and TestCases
+    ./manage.py test cluster
+    # running the lettuce tests
+    ./manage.py harvest
+
+
 Attributions
 ++++++++++++
 
