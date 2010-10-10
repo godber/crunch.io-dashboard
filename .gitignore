@@ -1,3 +1,6 @@
 settings_local.py
 *.pyc
 dash.db
+test-debug.log
+test_dash.db
+
