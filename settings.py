@@ -73,6 +73,10 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+LETTUCE_APPS = (
+    'dash.cluster',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,6 +85,7 @@ INSTALLED_APPS = (
     'dash.cluster',
     'piston',
     'djangotasks',
+    'lettuce.django',  # for BDD, acceptance testing
 )
 
 AUTH_PROFILE_MODULE = "cluster.UserProfile"
