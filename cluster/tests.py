@@ -1,23 +1,17 @@
 """
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
-
-Replace these with more appropriate tests for your application.
+This is a placeholder.  Doctests should only be used as brief examples inline in
+the code.  Otherwise, most testing should be done as lettuce features, see the
+cluster/features directory.
 """
 
 from django.test import TestCase
 
 class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+    def test_register(self):
+        response = self.client.get('/cluster/register/')
+        self.failUnlessEqual(response.status_code, 200)
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
+    def test_login(self):
+        response = self.client.get('/accounts/login/')
+        self.failUnlessEqual(response.status_code, 200)
 

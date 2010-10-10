@@ -48,6 +48,20 @@ class Ec2InstanceType(models.Model):
 
 
 class UserProfile(models.Model):
+    """
+    A UserProfile represents a Crunch.io Account, it might be possible down the
+    line for a user to have multiple accounts.  Actually, I am unsure of this,
+    the UserProfile used to be where I stored attributes about the account but
+    most of those were AWS related and have been pushed into the AwsCredential
+    model at this point.
+
+    >>> user = User( username = 'testusername', email = 'test@crunch.io' )
+    >>> user.set_password('testpassword')
+    >>> user.is_active = False
+    >>> user.save()
+    >>> user_profile = UserProfile( user = user, credit = '0.00' )
+    >>> user_profile.save()
+    """
     class Admin: pass
 
     user           = models.ForeignKey(User, unique=True)
