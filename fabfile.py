@@ -36,3 +36,8 @@ def reset():
     local('python ./manage.py reset cluster --noinput')
     local('python ./manage.py reset djangotasks --noinput')
     bootstrap()
+
+def test():
+    print "Run the following commands to run tests:"
+    print '  python ./manage.py test cluster'
+    print '  python ./manage.py harvest'

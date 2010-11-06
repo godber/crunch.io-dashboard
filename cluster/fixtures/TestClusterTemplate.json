@@ -1,0 +1,26 @@
+[
+    {
+        "pk": 1, 
+        "model": "cluster.clustertemplate", 
+        "fields": {
+            "number_of_nodes": 1, 
+            "name": "User001's Cluster", 
+            "creation_time": "2010-07-12 16:53:36", 
+            "status": "stopped", 
+            "type_of_nodes": 1, 
+            "user_profile": 2
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "cluster.clustertemplate", 
+        "fields": {
+            "number_of_nodes": 1, 
+            "name": "User002's Cluster", 
+            "creation_time": "2010-07-12 16:53:36", 
+            "status": "stopped", 
+            "type_of_nodes": 1, 
+            "user_profile": 3
+        }
+    }
+]
