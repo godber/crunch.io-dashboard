@@ -4,11 +4,7 @@ in the code.  Otherwise, most testing should be done as lettuce features, see
 the cluster/features directory.
 """
 
-#import sys
-#print sys.path
-
 from django.test import TestCase
-#from cluster.tests.pages import LoginPage
 import re
 
 
