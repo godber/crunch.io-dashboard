@@ -49,6 +49,7 @@ class AccessTest(TestCase):
     fixtures = [
             'TestUser.json',
             'TestClusterTemplate.json',
+            'TestAwsCredential.json',
             'Ec2InstanceType.json'
             ]
 
@@ -75,6 +76,15 @@ class AccessTest(TestCase):
         self.assertTrue(re.search(match_string, response.content))
 
     # A user should be able to access his own SSH Key
+    def test_get_ssh_key(self):
+        page = LoginPage(self.client)
+        page.login('user001', 'wombat')
+        dashboard_page = DashboardPage(self.client)
+        ssh_key = dashboard_page.get_ssh_key()
+        print ssh_key
+        match_string = "BEGIN RSA PRIVATE KEY"
+        self.assertTrue(re.search(match_string, ssh_key))
+
     # A user should be able to access his own Profile
     # A user should be able to edit his own Profile
 

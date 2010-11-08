@@ -36,8 +36,14 @@ class DashboardPage(object):
         return LaunchPage(self.client, response)
 
     def get_history(self, cluster_id):
+        "Returns the HistoryPage Object"
         response = self.client.get('/cluster/' + cluster_id + '/history')
         return HistoryPage(self.client, response)
+
+    def get_ssh_key(self):
+        "Returns a string containing the SSH key"
+        response = self.client.get('/cluster/account/ssh_key')
+        return response.content
 
 
 class HistoryPage(object):
