@@ -53,10 +53,12 @@ class AccessTest(TestCase):
             'Ec2InstanceType.json'
             ]
 
-    # A user should be able to launch his own cluster
-    def test_cluster_launch(self):
+    def setUp(self):
         page = LoginPage(self.client)
         page.login('user001', 'wombat')
+
+    # A user should be able to launch his own cluster
+    def test_cluster_launch(self):
         dashboard_page = DashboardPage(self.client)
         launch_page = dashboard_page.launch('1')
         response = launch_page.response
@@ -66,8 +68,6 @@ class AccessTest(TestCase):
  
     # A user should be able to access his own cluster history
     def test_cluster_history(self):
-        page = LoginPage(self.client)
-        page.login('user001', 'wombat')
         dashboard_page = DashboardPage(self.client)
         history_page = dashboard_page.goto_history('1')
         response = history_page.response
@@ -77,8 +77,6 @@ class AccessTest(TestCase):
 
     # A user should be able to access his own SSH Key
     def test_get_ssh_key(self):
-        page = LoginPage(self.client)
-        page.login('user001', 'wombat')
         dashboard_page = DashboardPage(self.client)
         ssh_key = dashboard_page.get_ssh_key()
         match_string = "BEGIN RSA PRIVATE KEY"
@@ -86,8 +84,6 @@ class AccessTest(TestCase):
 
     # A user should be able to access his own Profile
     def test_goto_account(self):
-        page = LoginPage(self.client)
-        page.login('user001', 'wombat')
         dashboard_page = DashboardPage(self.client)
         account_page = dashboard_page.goto_account()
         self.assertEqual(account_page.response.status_code, 200)
@@ -101,8 +97,6 @@ class AccessTest(TestCase):
 
     # A user should not be able to launch other clusters
     def test_cluster_launch_denied(self):
-        page = LoginPage(self.client)
-        page.login('user001', 'wombat')
         dashboard_page = DashboardPage(self.client)
         launch_page = dashboard_page.launch('2')
         response = launch_page.response
@@ -112,8 +106,6 @@ class AccessTest(TestCase):
 
     # A user should not be able to access other cluster histories
     def test_cluster_history_denied(self):
-        page = LoginPage(self.client)
-        page.login('user001', 'wombat')
         dashboard_page = DashboardPage(self.client)
         history_page = dashboard_page.goto_history('2')
         response = history_page.response
