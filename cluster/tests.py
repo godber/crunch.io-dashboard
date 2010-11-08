@@ -85,6 +85,18 @@ class AccessTest(TestCase):
         self.assertTrue(re.search(match_string, ssh_key))
 
     # A user should be able to access his own Profile
+    def test_get_user_info(self):
+        page = LoginPage(self.client)
+        page.login('user001', 'wombat')
+        dashboard_page = DashboardPage(self.client)
+        response = dashboard_page.get_user_info()
+        self.assertEqual(response.status_code, 200)
+        match_string = "Account Information for user001"
+        self.assertTrue(
+                re.search(match_string, response.content),
+                "String not found: " + match_string
+                )
+
     # A user should be able to edit his own Profile
 
     # A user should not be able to launch other clusters

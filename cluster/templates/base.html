@@ -81,7 +81,7 @@ $(document).ready(function(){
                    Logged in as
                    <strong>{{user.first_name}}</strong>.
                     <a href="/cluster/">Home</a> |
-                    <a href="{% url dash.cluster.views.account user.id %}">Account</a> |
+                    <a href="{% url dash.cluster.views.account %}">Account</a> |
                     <a href="/accounts/logout">Logout</a>
                 {% else %}
                     You must log in.
@@ -132,7 +132,7 @@ $(document).ready(function(){
 						</header> 
 						<dl class="first"> 
 							<dt><img width="16" height="16" alt="" src="/img/information.png"></dt>
-                <dd><a href="{% url dash.cluster.views.account user.id %}">{{user.first_name}} ({{user.username}})</a></dd>
+                <dd><a href="{% url dash.cluster.views.account %}">{{user.first_name}} ({{user.username}})</a></dd>
 	  						<dd class="last">Account Information.</dd>
 							<dt><img width="16" height="16" alt="" src="/img/key.png"></dt>
               <dd><a href="{% url dash.cluster.views.ssh_key %}">

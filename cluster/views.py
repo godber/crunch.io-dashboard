@@ -156,7 +156,7 @@ def terminate(request,cluster_instance_id):
         )
 
 @login_required
-def account(request, user_id):
+def account(request):
     user = request.user
     return render_to_response(
             'account.html',

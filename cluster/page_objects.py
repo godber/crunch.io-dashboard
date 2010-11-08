@@ -45,6 +45,11 @@ class DashboardPage(object):
         response = self.client.get('/cluster/account/ssh_key')
         return response.content
 
+    def get_user_info(self):
+        "Returns a string containing the SSH key"
+        response = self.client.get('/cluster/account')
+        return response
+
 
 class HistoryPage(object):
     def __init__(self, client, response):
