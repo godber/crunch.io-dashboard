@@ -9,7 +9,7 @@ urlpatterns = patterns('dash.cluster.views',
     (r'^(?P<cluster_instance_id>\d+)/terminate$', 'terminate'),
     (r'^account/(?P<user_id>\d+)/$', 'account'),
     (r'^account/create/$', 'account_create'),
-    (r'^account/(?P<user_id>\d+)/ssh_key$', 'ssh_key'),
+    (r'^account/ssh_key$', 'ssh_key'),
     (r'^register/$', 'register'),
 )
 

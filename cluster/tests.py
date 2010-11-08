@@ -81,7 +81,6 @@ class AccessTest(TestCase):
         page.login('user001', 'wombat')
         dashboard_page = DashboardPage(self.client)
         ssh_key = dashboard_page.get_ssh_key()
-        print ssh_key
         match_string = "BEGIN RSA PRIVATE KEY"
         self.assertTrue(re.search(match_string, ssh_key))
 

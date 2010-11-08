@@ -165,7 +165,7 @@ def account(request, user_id):
             })
 
 @login_required
-def ssh_key(request, user_id):
+def ssh_key(request):
     user = request.user
     ssh_key = user.userprofile_set.all()[0].awscredential.ssh_key
     response = HttpResponse(ssh_key, content_type='text/plain')

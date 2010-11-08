@@ -135,7 +135,7 @@ $(document).ready(function(){
                 <dd><a href="{% url dash.cluster.views.account user.id %}">{{user.first_name}} ({{user.username}})</a></dd>
 	  						<dd class="last">Account Information.</dd>
 							<dt><img width="16" height="16" alt="" src="/img/key.png"></dt>
-              <dd><a href="{% url dash.cluster.views.ssh_key user.id %}">
+              <dd><a href="{% url dash.cluster.views.ssh_key %}">
                 SSH Key
               </a></dd> 
 							<dd class="last">Download for cluster access</dd> 
