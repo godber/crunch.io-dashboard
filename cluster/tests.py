@@ -113,6 +113,4 @@ class AccessTest(TestCase):
         match_string = "Cluster History Access Denied"
         self.assertTrue(re.search(match_string, response.content))
 
-    # A user should not be able to access other SSH Keys
-    # A user should not be able to access other Profiles
     # A user should not be able to edit other Profiles
