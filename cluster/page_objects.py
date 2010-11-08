@@ -2,6 +2,13 @@
 # sure I am getting it quite yet.  Inspired by this talk a columbus code camp.
 # http://www.cheezyworld.com/2010/10/17/slides-from-columbus-code-camp/
 
+# Conventions
+# ===========
+# get_foo  - for requests that return values but lack templates
+# goto_bar - for requests that have templates and should return other page
+#            objects
+
+
 class LoginPage(object):
     def __init__(self, client):
         self.url = '/accounts/login/'
@@ -35,7 +42,7 @@ class DashboardPage(object):
         response = self.client.get('/cluster/' + cluster_id + '/launch')
         return LaunchPage(self.client, response)
 
-    def get_history(self, cluster_id):
+    def goto_history(self, cluster_id):
         "Returns the HistoryPage Object"
         response = self.client.get('/cluster/' + cluster_id + '/history')
         return HistoryPage(self.client, response)
@@ -45,10 +52,16 @@ class DashboardPage(object):
         response = self.client.get('/cluster/account/ssh_key')
         return response.content
 
-    def get_user_info(self):
+    def goto_account(self):
         "Returns a string containing the SSH key"
         response = self.client.get('/cluster/account')
-        return response
+        return AccountInfoPage(self.client, response)
+
+
+class AccountInfoPage(object):
+    def __init__(self, client, response):
+        self.client = client
+        self.response = response
 
 
 class HistoryPage(object):
