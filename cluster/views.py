@@ -88,6 +88,8 @@ def launch(request, cluster_template_id):
     if request.method == 'GET':
         # FIXME: Switch to POST
         # Clusters should only launch if its a POST request
+        # TODO: Constrain this search to clusters owned by user.  Otherwise return a
+        # 404 with an error message.
         cluster_template = get_object_or_404(
             ClusterTemplate,
             id=cluster_template_id
@@ -175,6 +177,8 @@ def ssh_key(request):
 @login_required
 def history(request, cluster_template_id):
     user = request.user
+    # TODO: Constrain this search to clusters owned by user.  Otherwise return a
+    # 404 with an error message.
     cluster_template = get_object_or_404(ClusterTemplate,id=cluster_template_id)
     return render_to_response('history.html', {
         'user': user,
