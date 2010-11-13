@@ -8,3 +8,4 @@ paramiko==1.7.6
 pycrypto==2.2
 wsgiref==0.1.2
 lettuce==0.1.14
+South==0.7.2

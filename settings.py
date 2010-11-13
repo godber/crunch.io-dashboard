@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'piston',
     'djangotasks',
     'lettuce.django',  # for BDD, acceptance testing
+    'south',           # Database Migrations
 )
 
 AUTH_PROFILE_MODULE = "cluster.UserProfile"
