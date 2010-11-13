@@ -1,6 +1,8 @@
 # toying with the idea of using PageObjects for testing purposes, but I am not
 # sure I am getting it quite yet.  Inspired by this talk a columbus code camp.
 # http://www.cheezyworld.com/2010/10/17/slides-from-columbus-code-camp/
+# or this post
+# http://www.cheezyworld.com/2010/11/09/ui-tests-not-brittle/
 
 # Conventions
 # ===========
