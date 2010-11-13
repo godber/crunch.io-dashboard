@@ -114,3 +114,7 @@ class AccessTest(TestCase):
         self.assertTrue(re.search(match_string, response.content))
 
     # A user should not be able to edit other Profiles
+
+    # A logged in user should be able to change his password
+
+    # An unauthenticated user should be able to create an account.
