@@ -22,7 +22,8 @@
     "model": "cluster.userprofile", 
     "fields": {
       "credit": "0", 
-      "user": 1
+      "user": 1,
+      "next_user_clustertemplate_id": 1
     }
   },
   {
@@ -47,8 +48,9 @@
     "pk": 2, 
     "model": "cluster.userprofile", 
     "fields": {
-      "credit": "0", 
-      "user": 2
+      "credit": "0",
+      "user": 2,
+      "next_user_clustertemplate_id": 1
     }
   },
   {
@@ -74,7 +76,8 @@
     "model": "cluster.userprofile", 
     "fields": {
       "credit": "0", 
-      "user": 3
+      "user": 3,
+      "next_user_clustertemplate_id": 1
     }
   }
 ]

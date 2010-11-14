@@ -8,7 +8,8 @@
             "creation_time": "2010-07-12 16:53:36", 
             "status": "stopped", 
             "type_of_nodes": 1, 
-            "user_profile": 2
+            "user_profile": 2,
+            "user_clustertemplate_id": 1
         }
     },
     {
@@ -20,7 +21,8 @@
             "creation_time": "2010-07-12 16:53:36", 
             "status": "stopped", 
             "type_of_nodes": 1, 
-            "user_profile": 3
+            "user_profile": 3,
+            "user_clustertemplate_id": 1
         }
     }
 ]
