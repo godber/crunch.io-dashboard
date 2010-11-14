@@ -95,24 +95,6 @@ class AccessTest(TestCase):
 
     # A user should be able to edit his own Profile
 
-    # A user should not be able to launch other clusters
-    def test_cluster_launch_denied(self):
-        dashboard_page = DashboardPage(self.client)
-        launch_page = dashboard_page.launch('2')
-        response = launch_page.response
-        self.assertEqual(response.status_code, 200)
-        match_string = "Cluster Access Denied"
-        self.assertTrue(re.search(match_string, response.content))
-
-    # A user should not be able to access other cluster histories
-    def test_cluster_history_denied(self):
-        dashboard_page = DashboardPage(self.client)
-        history_page = dashboard_page.goto_history('2')
-        response = history_page.response
-        self.assertEqual(response.status_code, 200)
-        match_string = "Cluster History Access Denied"
-        self.assertTrue(re.search(match_string, response.content))
-
     # A user should not be able to edit other Profiles
 
     # A logged in user should be able to change his password
