@@ -59,8 +59,7 @@ class UserProfile(models.Model):
     >>> user.set_password('testpassword')
     >>> user.is_active = False
     >>> user.save()
-    >>> user_profile = UserProfile( user = user, credit = '0.00',
-    >>>     next_user_clustertemplate_id = 1 )
+    >>> user_profile = UserProfile( user = user, credit = '0.00', next_user_clustertemplate_id = 1 )
     >>> user_profile.save()
     """
     class Admin: pass
