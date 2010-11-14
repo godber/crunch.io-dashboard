@@ -59,13 +59,15 @@ class UserProfile(models.Model):
     >>> user.set_password('testpassword')
     >>> user.is_active = False
     >>> user.save()
-    >>> user_profile = UserProfile( user = user, credit = '0.00' )
+    >>> user_profile = UserProfile( user = user, credit = '0.00',
+    >>>     next_user_clustertemplate_id = 1 )
     >>> user_profile.save()
     """
     class Admin: pass
 
     user           = models.ForeignKey(User, unique=True)
     credit         = models.DecimalField(max_digits = 8, decimal_places = 2)
+    next_user_clustertemplate_id = models.IntegerField()
 
     def __str__(self):
         return "%s's profile" % self.user  
@@ -88,6 +90,8 @@ class ClusterTemplate(models.Model):
     A ClusterTemplate is the template or definition of a cluster that can be
     launched.  These will be saved and shown to users unless they are deleted or
     archived.
+
+    user_clustertemplate_id - Unique per user cluster template identifier
     """
 
     STATUS_CHOICES = (
@@ -105,6 +109,7 @@ class ClusterTemplate(models.Model):
     creation_time      = models.DateTimeField()
     is_demo            = models.BooleanField()
     status             = models.CharField(max_length = 20, choices = STATUS_CHOICES)
+    user_clustertemplate_id = models.IntegerField()
 
     def __unicode__(self):
         return self.name + ' (' + str(self.user_profile) + ')'

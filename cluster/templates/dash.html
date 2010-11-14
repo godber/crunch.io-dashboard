@@ -65,9 +65,9 @@
                     {% endif %}
                     {% endfor %}
                 {% else %} {% if cluster.status == 'stopped' %}
-                <a href="{% url dash.cluster.views.launch cluster.id %}">Start</a> |
+                <a href="{% url dash.cluster.views.launch cluster.user_clustertemplate_id %}">Start</a> |
                 {% endif %} {% endif %}
-                <a href="{% url dash.cluster.views.history cluster.id %}">History</a><br />
+                <a href="{% url dash.cluster.views.history cluster.user_clustertemplate_id %}">History</a><br />
             </td>
         </tr>
         {% endfor %}

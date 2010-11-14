@@ -44,8 +44,11 @@ def create(request):
                 creation_time   = datetime.datetime.now(),
                 is_demo         = is_demo,
                 status          = 'disk-creating',
+                user_clustertemplate_id = user_profile.next_user_clustertemplate_id
                 )
             cluster_template.save()
+            user_profile.next_user_clustertemplate_id += 1
+            user_profile.save()
             disk = Disk( 
                     size             = request.POST['size'],
                     cluster_template = cluster_template,
@@ -83,17 +86,16 @@ def create(request):
     )
 
 @login_required
-def launch(request, cluster_template_id):
+def launch(request, user_clustertemplate_id):
     user = request.user
     if request.method == 'GET':
         # FIXME: Switch to POST
         # Clusters should only launch if its a POST request
-        # TODO: Constrain this search to clusters owned by user.  Otherwise return a
-        # 404 with an error message.
-        cluster_template = get_object_or_404(
-            ClusterTemplate,
-            id=cluster_template_id
-            )
+        user_profile = user.get_profile()
+        cluster_template = get_object_or_404(ClusterTemplate,
+                user_profile__exact = user_profile,
+                user_clustertemplate_id__exact = user_clustertemplate_id,
+                )
         if cluster_template.status in ('starting', 'stopping', 'running'):
             error_message = 'This cluster is already running.  Only one cluster may run at a time.  Create a new cluster and launch it if necessary.'
             return render_to_response('launch_error.html', {
@@ -175,11 +177,13 @@ def ssh_key(request):
     return response
 
 @login_required
-def history(request, cluster_template_id):
+def history(request, user_clustertemplate_id):
     user = request.user
-    # TODO: Constrain this search to clusters owned by user.  Otherwise return a
-    # 404 with an error message.
-    cluster_template = get_object_or_404(ClusterTemplate,id=cluster_template_id)
+    user_profile = user.get_profile()
+    cluster_template = get_object_or_404(ClusterTemplate,
+            user_profile__exact = user_profile,
+            user_clustertemplate_id__exact = user_clustertemplate_id,
+            )
     return render_to_response('history.html', {
         'user': user,
         'cluster_template': cluster_template,
@@ -226,6 +230,7 @@ def account_create(request):
             user_profile = UserProfile(
                     user = user,
                     credit = '0.00',
+                    next_user_clustertemplate_id = 1,
                     )
             user_profile.save()
             aws_credentials = AwsCredential(
