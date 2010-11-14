@@ -132,14 +132,22 @@ def launch(request, user_clustertemplate_id):
         )
 
 @login_required
-def terminate(request,cluster_instance_id):
+def terminate(request,user_clustertemplate_id):
     user = request.user
-    cluster_instance = get_object_or_404(ClusterInstance,id=cluster_instance_id)
+    user_profile = user.get_profile()
+    cluster_template = get_object_or_404(ClusterTemplate,
+            user_profile__exact = user_profile,
+            user_clustertemplate_id__exact = user_clustertemplate_id,
+            )
+    for instance in cluster_template.clusterinstance_set.all():
+        if instance.is_running:
+            cluster_instance = instance
+
     cluster_instance.termination_time = datetime.datetime.now()
     cluster_instance.save()
 
-    cluster_instance.cluster_template.status = 'stopping'
-    cluster_instance.cluster_template.save()
+    cluster_template.status = 'stopping'
+    cluster_template.save()
     task = Task.objects.task_for_object(
             ClusterInstance,
             cluster_instance.id,
