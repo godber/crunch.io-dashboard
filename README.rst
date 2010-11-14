@@ -1,7 +1,8 @@
 Crunch.io Dashboard
 ~~~~~~~~~~~~~~~~~~~
 
-The Crunch.io Dashboard allows users to launch scientific computing clusters in EC2 with ease.
+The Crunch.io Dashboard allows users to launch scientific computing clusters in
+EC2 with ease.
 
 I will be updating these instructions in the near future as well as publicly
 announcing the opensource release of the core dashboard component.
