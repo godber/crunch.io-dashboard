@@ -1,9 +1,10 @@
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, mail_admins
+from django.contrib import messages
 
 from dash.cluster.models import ClusterTemplate, ClusterInstance, UserProfile
 from dash.cluster.models import Ec2InstanceType, Disk, AwsCredential
@@ -168,6 +169,54 @@ def terminate(request,user_clustertemplate_id):
         )
 
 @login_required
+def archive(request, user_clustertemplate_id):
+    user = request.user
+    if request.method == 'GET':
+        # FIXME: Switch to POST
+        # Clusters should only be archived if its a POST request
+        user_profile = user.get_profile()
+        cluster_template = get_object_or_404(ClusterTemplate,
+                user_profile__exact = user_profile,
+                user_clustertemplate_id__exact = user_clustertemplate_id,
+                )
+        cluster_template.archived = True
+        cluster_template.save()
+        messages.success(request, 'Cluster Archived.')
+        return redirect('/cluster/')
+
+@login_required
+def unarchive(request, user_clustertemplate_id):
+    user = request.user
+    if request.method == 'GET':
+        # FIXME: Switch to POST
+        # Clusters should only be unarchived if its a POST request
+        user_profile = user.get_profile()
+        cluster_template = get_object_or_404(ClusterTemplate,
+                user_profile__exact = user_profile,
+                user_clustertemplate_id__exact = user_clustertemplate_id,
+                )
+        cluster_template.archived = False
+        cluster_template.save()
+        messages.success(request, 'Cluster Removed From Archive.')
+        return redirect(archived)
+
+@login_required
+def archived(request):
+    """The Archived Cluster Listing"""
+    user = request.user
+    user_profile = user.get_profile()
+    cluster_templates = list(ClusterTemplate.objects.filter(
+        user_profile = user_profile,
+        archived = True,
+        ))
+    return render_to_response('archived.html', {
+        'user': user,
+        'cluster_templates': cluster_templates,
+        },
+        context_instance=RequestContext(request)
+        )
+
+@login_required
 def account(request):
     user = request.user
     return render_to_response(
@@ -201,14 +250,19 @@ def history(request, user_clustertemplate_id):
 def dash(request):
     user = request.user
     user_profile = user.get_profile()
-    cluster_templates = list(ClusterTemplate.objects.filter(user_profile = user_profile))
+    cluster_templates = list(ClusterTemplate.objects.filter(
+        user_profile = user_profile,
+        archived = False,
+        ))
     cluster_instances = list(ClusterInstance.objects.all())
     return render_to_response('dash.html', {
         'user': user,
         'cluster_templates': cluster_templates,
         'cluster_instances': cluster_instances,
         'running_states': ['starting', 'stopping', 'running'],
-        } )
+        },
+        context_instance=RequestContext(request)
+        )
 
 def account_create(request):
     if request.method == 'POST':

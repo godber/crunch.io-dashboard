@@ -7,6 +7,7 @@ from django.contrib import admin
 class ClusterTemplateAdmin(admin.ModelAdmin):
     list_display = ( 
             'name',
+            'archived',
             'number_of_nodes',
             'type_of_nodes',
             'status',

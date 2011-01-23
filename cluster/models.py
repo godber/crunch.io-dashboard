@@ -109,6 +109,7 @@ class ClusterTemplate(models.Model):
     is_demo            = models.BooleanField()
     status             = models.CharField(max_length = 20, choices = STATUS_CHOICES)
     user_clustertemplate_id = models.IntegerField()
+    archived                = models.BooleanField(default = False)
 
     def __unicode__(self):
         return self.name + ' (' + str(self.user_profile) + ')'

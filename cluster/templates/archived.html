@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Crunch.io - Dashboard{% endblock %}
-{% block pagetitle %}Dashboard{% endblock %}
+{% block pagetitle %}Archived Clusters{% endblock %}
 
 {% block javascript %}
     $('#clusters').dataTable();
@@ -11,7 +11,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<h3>Clusters</h3>
+<h3>Archived Clusters</h3>
 
 {% if messages %}
 <div class="messages">
@@ -33,8 +33,6 @@
             <th>Number of Nodes</th>
             <th>Node Type</th>
             <th>Disk Size</th>
-            <th>IP Address</th>
-            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -50,30 +48,8 @@
             <td>{{cluster.type_of_nodes}}</td>
             <td>{{cluster.disk_set.all.0.size}} GB</td>
             <td>
-                {% if cluster.status == 'running' %}
-                    {% for instance in cluster.clusterinstance_set.all %}
-                    {% if instance.is_running %}
-                    {% for node in instance.ec2instance_set.all %}
-                        {% if node.alias == 'master' %}
-                            {{ node.ip_address }}
-                        {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    {% endfor %}
-                {% else %}
-                -
-                {% endif %}
-             <td>{{cluster.status}}</td>
-            <td>
-                {% if cluster.status == 'running' %}
-                    {# FIXME: Update these to be forms posts #}
-                    <a href="{% url dash.cluster.views.terminate cluster.user_clustertemplate_id %}">Stop</a> |
-                {% else %}
-                    {% if cluster.status == 'stopped' %}
-                        <a href="{% url dash.cluster.views.launch cluster.user_clustertemplate_id %}">Start</a> |
-                        <a href="{% url dash.cluster.views.archive cluster.user_clustertemplate_id %}">Archive</a> |
-                    {% endif %}
-                {% endif %}
+                {# FIXME: Update these to be forms posts #}
+                <a href="{% url dash.cluster.views.unarchive cluster.user_clustertemplate_id %}">Unarchive</a> |
                 <a href="{% url dash.cluster.views.history cluster.user_clustertemplate_id %}">History</a><br />
             </td>
         </tr>
@@ -81,7 +57,7 @@
     </tbody>
 </table>
 
-<a href="{% url dash.cluster.views.archived %}">Archived Clusters</a>
+<a href="{% url dash.cluster.views.dash %}">Back to Dashboard</a>
 
 {% endblock %}
 
