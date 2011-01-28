@@ -4,25 +4,74 @@
 {% block pagetitle %}Cluster History{% endblock %}
 
 {% block content %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <h2>Cluster History for {{cluster_template.name}}</h2>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<table class="no-style width3">
+    <tbody>
+        <tr>
+            <td>
+                <b>Number of Nodes</b>
+            </td>
+            <td>
+                {{cluster_template.number_of_nodes}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Node Type</b>
+            </td>
+            <td>
+                {{cluster_template.type_of_nodes}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Disk Size</b>
+            </td>
+            <td>
+                {{cluster_template.disk_set.all.0.size}} GB
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Archived</b>
+            </td>
+            <td>
+                {{cluster_template.archived}}
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-<strong>{{cluster_template.name}}</strong> (id = {{cluster_template.user_clustertemplate_id}},
-number = {{cluster_template.number_of_nodes}}, 
-type = {{cluster_template.type_of_nodes}},
-owner = {{ cluster_template.user_profile.user }})<br />
-<ul>
-    {% for instance in cluster_template.clusterinstance_set.all %}
-    <li>
-        Cluster Instance ID: {{instance.id}}<br />
-        Owner: {{instance.cluster_template.user_profile.user}}<br />
-        Launch Time: {{instance.launch_time|date:"SHORT_DATETIME_FORMAT"}}<br />
-        Termination Time: {{instance.termination_time|date:"SHORT_DATETIME_FORMAT"}}<br />
-        Running: {{instance.is_running}}<br />
-    </li>
-    {% endfor %}
-</ul>
+<div class="clear">&nbsp;</div>
+<table class="display stylized" id="clusters">
+    <thead>
+        <tr>
+            <th>Cluster Instance ID</th>
+            <th>Launch Time</th>
+            <th>Termination Time</th>
+            <th>Runtime</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for instance in cluster_template.clusterinstance_set.all %}
+        <tr class="gradeA">
+            <td>{{instance.id}}</td>
+            <td>{{instance.launch_time|date:"SHORT_DATETIME_FORMAT"}}</td>
+            <td>{{instance.termination_time|date:"SHORT_DATETIME_FORMAT"}}</td>
+            <td>
+                {% if instance.is_running %}
+                Running
+                {% else %}
+                {{instance.launch_time|timesince:instance.termination_time}}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 
 <a href="{% url dash.cluster.views.dash %}">Back to Dashboard</a>
 
