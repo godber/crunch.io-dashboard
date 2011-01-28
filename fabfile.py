@@ -16,6 +16,7 @@ def docs():
 
 def bootstrap():
     local('python ./manage.py syncdb --noinput')
+    local('python ./manage.py migrate')
     local('python ./manage.py loaddata Ec2InstanceType.json')
     local('python ./manage.py loaddata User.json')
     print 'Change the admin user password:'
