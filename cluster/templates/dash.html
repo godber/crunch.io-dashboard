@@ -40,11 +40,13 @@
     </thead>
     <tbody>
         {% for cluster in cluster_templates %}
-        <tr class="gradeA">
+        <tr class="{% if cluster.status == 'running' %}gradeA{% endif %}
+            {% if cluster.status == 'stopped' %}gradeU{% endif %}
+            {% if cluster.status == 'error' %}gradeX{% endif %}
+            {% if cluster.status != 'running' and cluster.status != 'stopped' and cluster.status != 'error' %}gradeC{% endif %}
+            ">
             <td>{{cluster.name}}
-                {% if cluster.is_demo %}
-                (DEMO)
-                {% endif %}
+                {% if cluster.is_demo %}(DEMO){% endif %}
             </td>
             <td>{{cluster.number_of_nodes}}</td>
             <td>{{cluster.type_of_nodes}}</td>
