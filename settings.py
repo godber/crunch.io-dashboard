@@ -90,7 +90,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'dash.cluster',
-    'piston',
     'djangotasks',
     'lettuce.django',  # for BDD, acceptance testing
     'south',           # Database Migrations

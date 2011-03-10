@@ -4,7 +4,6 @@ South==0.7.3
 StarCluster==0.91
 boto==1.9b
 django-fields==0.1.1
-django-piston==0.2.2
 lettuce==0.1.14
 lxml==2.3
 nose==1.0.0

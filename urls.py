@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
     (r'^cluster/', include('dash.cluster.urls')),
-    (r'^api/', include('dash.api.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^support/$', direct_to_template, {
         'template': 'support.html'
