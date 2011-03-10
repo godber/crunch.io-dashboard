@@ -1,4 +1,4 @@
-Django==1.2.1
+Django==1.2.5
 Fabric==0.9.1
 South==0.7.2
 StarCluster==0.91
