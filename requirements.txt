@@ -1,6 +1,6 @@
 Django==1.2.5
-Fabric==0.9.1
-South==0.7.2
+Fabric==1.0.0
+South==0.7.3
 StarCluster==0.91
 boto==1.9b
 django-fields==0.1.1
